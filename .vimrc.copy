@@ -1,0 +1,454 @@
+execute pathogen#infect()
+set nocompatible                    " full vim
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+Plugin 'gmarik/vundle'
+
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'puremourning/vimspector'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-powerline'
+"Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bogado/file-line'
+Plugin 'cloudhead/shady.vim'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/xoria256.vim'
+Plugin 'ivalkeen/nerdtree-execute'
+Plugin 'jceb/vim-orgmode'
+Plugin 'jpalardy/vim-slime'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'mrtazz/molokai.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdtree'
+Plugin 'sickill/vim-pasta'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-classpath'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-speeddating'
+Plugin 'preservim/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'Badacadabra/vim-archery'
+Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'scheakur/vim-scheakur'
+Plugin 'lifepillar/vim-solarized'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'tsaleh/vim-tmux'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/Gummybears'
+Plugin 'vim-scripts/nerdtree-ack'
+Plugin 'vim-scripts/utl.vim'
+Plugin 'wavded/vim-stylus'
+Plugin 'wincent/Command-T'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'laurentgoudet/vim-howdoi.git'
+Plugin 'preservim/nerdtree'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'github/copilot.vim'
+Plugin 'vim-airline/vim-airline-themes'
+
+call vundle#end()                   " required
+syntax enable                       " enable syntax highlighting
+set encoding=utf8                   " utf8 default encoding
+
+filetype plugin indent on
+
+noremap , \
+let mapleader = ","
+
+set scrolloff=3                     " show 3 lines of context around the cursor
+set autoread                        " set to auto read when a file is changed from the outside
+set autowrite
+set showcmd                         " show typed commands
+
+set wildmenu                        " turn on WiLd menu
+set wildmode=list:longest,list:full " activate TAB auto-completion for file paths
+set wildignore+=*.o,.git,.svn,node_modules,*.class,*.jar,*.png,*.jpg,*.jpeg,*.gif,*.zip,*.tar,*.gz,target
+set termwinsize=12x0   " Set terminal size
+set splitbelow         " Always split below
+set mouse=a            " Enable mouse drag on window splits
+
+set ruler                           " always show current position
+set backspace=indent,eol,start      " set backspace config, backspace as normal
+set nomodeline                      " security
+
+set hlsearch                        " highlight search things
+set incsearch                       " go to search results as typing
+set smartcase                       " but case-sensitive if expression contains a capital letter.
+set ignorecase                      " ignore case when searching
+set gdefault                        " assume global when searching or substituting
+set magic                           " set magic on, for regular expressions
+set showmatch                       " show matching brackets when text indicator is over them
+
+set lazyredraw                      " don't redraw screen during macros, faster
+set ttyfast                         " improves redrawing for newer computers
+set fileformats=unix,mac,dos
+set ttymouse=xterm
+
+set nobackup                        " prevent backups of files, since using vcs
+set nowritebackup
+set noswapfile
+
+set shiftwidth=2                    " set tab width
+set softtabstop=2
+set tabstop=2
+
+
+set smarttab
+set expandtab                       " use spaces, not tabs
+set autoindent                      " set automatic code indentation
+set hidden                          " allow background buffers w/out writing
+
+set nowrap                          " don't wrap lines
+set list                            " show hidden characters
+set listchars=tab:\ \ ,trail:·      " show · for trailing space, \ \ for trailing tab
+set spelllang=en,es                 " set spell check language
+set noeb vb t_vb=                   " disable audio and visual bells
+
+set incsearch  " Enable incremental search
+set hlsearch   " Enable highlight search
+
+set t_Co=256                        " use 256 colors
+set background=light
+colorscheme jellybeans                 " terminal theme
+map <m-a> ggVG
+
+
+let NERDTreeShowBookmarks = 1   " Show the bookmarks table
+let NERDTreeShowHidden = 1      " Show hidden files
+let NERDTreeShowLineNumbers = 0 " Hide line numbers
+let NERDTreeMinimalMenu = 1     " Use the minimal menu (m)
+let NERDTreeWinPos = “left”     " Panel opens on the left side
+let NERDTreeWinSize = 31        " Set panel width to 31 columns
+
+nmap <F2> :NERDTreeToggle<CR>
+
+if has("gui_running")
+    au GUIEnter * set vb t_vb=       " disable visual bell in gui
+    " set guioptions-=T                " remove gui toolbar
+    " set guioptions-=m               " remove gui menubar
+    set linespace=2                  " space between lines
+    set columns=160 lines=35         " window size
+
+    set guioptions+=LlRrb            " crazy hack to get gvim to remove all scrollbars
+    set guioptions-=LlRrb
+
+    set guifont=Menlo:h24            " gui font
+endif
+
+
+" FOLDING
+"set foldenable                   " enable folding
+"set foldmethod=indent            " most files are evenly indented
+"set foldlevel=99
+
+" ADDITIONAL KEY MAPPINGS
+
+" fast saving
+nmap <leader>w :up<cr>
+
+" fast escaping
+imap jj <ESC>
+
+" prevent accidental striking of F1 key
+map <F1> <ESC>
+imap <F1> <ESC>
+
+" clear highlight
+nnoremap <leader><space> :noh<cr>
+
+" map Y to match C and D behavior
+nnoremap Y y$
+
+" yank entire file (global yank)
+nmap gy ggVGy
+
+" ignore lines when going up or down
+nnoremap j gj
+nnoremap k gk
+
+" auto complete {} indent and position the cursor in the middle line
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap (<CR>  (<CR>)<Esc>O
+inoremap [<CR>  [<CR>]<Esc>O
+
+" fast window switching
+map <leader>, <C-W>w
+map <leader>t :CtrlP<cr>
+map <leader>b :CtrlPBuffer<cr>
+map <leader>m :CtrlPMRU<cr>
+
+" cycle between buffers
+map <leader>. :b#<cr>
+
+" change directory to current buffer
+map <leader>cd :cd %:p:h<cr>
+
+" open file explorer
+map <leader>n :NERDTreeToggle<cr>
+
+" open selected file in nerdtree
+map <leader>h :NERDTreeFind<cr>
+
+" swap implementations of ` and ' jump to prefer row and column jumping
+nnoremap ' `
+nnoremap ` '
+
+" indent visual selected code without unselecting and going back to normal mode
+vmap > >gv
+vmap < <gv
+" indent visually with the < > keys, but without shift held.
+vmap . >gv
+vmap , <gv
+"setglobal relativenumber
+
+"set foldcolumn=8
+
+" Screw ex mode
+:map Q <Nop>
+
+" copy/paste to/from x clipboard
+vmap <leader>y :!xclip -f -sel clip<cr>
+map <leader>p :r!xclip -o<cr>
+
+" pull word under cursor into lhs of a substitute (for quick search and replace)
+nmap <leader>r :%s#\<<C-r>=expand("<cword>")<CR>\>#
+
+" strip all trailing whitespace in the current file
+nnoremap <leader>W :%s/\s\+$//e<cr>:let @/=''<CR>
+
+" insert path of current file into a command
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" fast editing of the .vimrc
+nmap <silent> <leader>ev :e $MYVIMRC<cr>
+nmap <silent> <leader>sv :so $MYVIMRC<cr>
+
+" allow saving when you forgot sudo
+cmap w!! w !sudo tee % >/dev/null
+
+" turn on spell checking
+map <leader>spl :setlocal spell!<cr>
+
+" spell checking shortcuts
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+" window
+nmap <leader>sw<left>  :topleft  vnew<CR>
+nmap <leader>sw<right> :botright vnew<CR>
+nmap <leader>sw<up>    :topleft  new<CR>
+nmap <leader>sw<down>  :botright new<CR>
+" buffer
+nmap <leader>s<left>   :leftabove  vnew<CR>
+nmap <leader>s<right>  :rightbelow vnew<CR>
+nmap <leader>s<up>     :leftabove  new<CR>
+nmap <leader>s<down>   :rightbelow new<CR>
+
+
+
+"" ADDITIONAL AUTOCOMMANDS
+
+" saving when focus lost (after tabbing away or switching buffers)
+au FocusLost,BufLeave,WinLeave,TabLeave * silent! up
+
+" open in last edit place
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+au QuickFixCmdPost *grep* cwindow
+
+"" ABBREVIATIONS
+" source $HOME/.vim/autocorrect.vim
+
+"" PLUGIN SETTINGS
+
+let g:vimspector_enable_mappings = 'HUMAN'
+
+let g:netrw_liststyle=3  " use tree style for netrw
+
+" Unimpaired
+" bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+
+" Ack
+set grepprg=ack
+nnoremap <leader>a :Ack<space>
+let g:ackhighlight=1
+let g:ackprg="ack -H --type-set jade=.jade --type-set stylus=.styl --type-set coffee=.coffee --nocolor --nogroup --column --ignore-dir=node_modules"
+
+" CoffeeScript
+map <leader>cc :CoffeeCompile<cr>
+
+"" LANGUAGE SPECIFIC
+
+" Python
+au FileType groovy set noexpandtab shiftwidth=4 tabstop=4
+au FileType gsp set noexpandtab
+au FileType gsp set shiftwidth=4
+au FileType gsp set tabstop=4
+
+" JavaScript
+au BufRead,BufNewFile *.json set ft=javascript
+
+"" STATUS LINE
+set laststatus=2 " always hide the last status
+let g:user_zen_settings = {
+\    'php' : {
+\        'extends' : 'html',
+\    },
+\    'xml' : {
+\        'extends' : 'html',
+\    },
+\    'haml' : {
+\       'extends' : 'html',
+\    },
+\    'gsp' : {
+\        'extends' : 'html',
+\    }
+\}
+
+let g:use_zenabbr_key = '-'
+set relativenumber
+
+set path+=**
+set wildmenu
+
+set shortmess=atI
+set tildeop
+
+map <silent> <F3> :call BufferList() <CR>
+"Ctrl P
+noremap <C-t> :CtrlP <CR>
+
+" autoindent with two spaces, always expand tabs
+set nu ai sw=2 sts=2 expandtab
+
+au! BufRead,BufNewFile *.haml         setfiletype haml
+au! BufRead,BufNewFile *.ftl         setfiletype ftl
+
+set ts=2
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+func Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunc
+
+" just type cl<space>  to get console.log('<cursor stays here');
+ia cl console.log('');<Left><Left><Left><C-R>=Eatchar('\s')<CR>
+set nonumber
+set number
+"set numberwidth=5
+
+let g:EasyMotion_leader_key = "'"
+
+map <space> 'w
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.sass-cache\|.ivy-cache\'
+
+syntax enable
+colorscheme gummybears
+
+hi javaTypedef term=italic cterm=NONE ctermfg=LightGreen ctermbg=NONE gui=bold guifg=#60ff60 guibg=NONE
+
+if exists('+colorcolumn')
+  set colorcolumn=120              " show a right margin column
+  hi ColorColumn ctermbg=234 guibg=#1c1c1c
+endif
+
+let NERDTreeMapOpenInTab='\t'
+
+" Dvorak remap
+" 1 - Movement keys htns -> hjkl
+"   (gj and gk move by visual lines, if the line is wrapped for instance)
+noremap h h
+noremap t gj
+noremap n gk
+noremap s l
+" 2 - replace functions we remapped away
+"   S goes to bottom of Screen
+noremap S L
+"   j/J Jerk and replace a character/line
+noremap j s
+noremap J S
+"   k/K Keep searching through regex matches
+noremap k n
+noremap K N
+"   l/L Looks forward/backward to a
+noremap l t
+noremap L T
+
+"   T   puts lines Together
+noremap T J
+noremap <C-n> <PageUp>
+noremap <C-t> <PageDown>
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['lightblue',    'SeaGreen3'],
+    \ ['lightgray',    'lightOrchid3'],
+    \ ['lightgreen',   'firebrick3'],
+    \ ['lightcyan',    'RoyalBlue3'],
+    \ ['lightred',     'SeaGreen3'],
+    \ ['lightmagenta', 'lightOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['lightmagenta', 'lightOrchid3'],
+    \ ['lightblue',    'firebrick3'],
+    \ ['lightgreen',   'RoyalBlue3'],
+    \ ['lightcyan',    'SeaGreen3'],
+    \ ['lightred',     'lightOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:slime_target = "tmux"
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd BufNewFile *.java
+ \ exe "normal O/** " . expand('%:t:r') ".java\n/ \n\npublic class " . expand('%:t:r') .
