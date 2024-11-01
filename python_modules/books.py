@@ -16,8 +16,13 @@ class Book:
         print(query)
         self.cur.execute(query)
 
-    def find_one(self, column: str, table: str) -> list[str]:
-        query = f"SELECT {column} FROM {table} LIMIT 1"
+    def find_one(self, column: str, table: str, title: str) -> list[str]:
+        query = f"SELECT {column} FROM {table} WHERE {column} = '{title}' LIMIT 1"
+        result = self.cur.execute(query)
+        return result.fetchall()
+
+    def find(self, column: str, title: str, table: str) -> list:
+        query = f"SELECT * FROM {table} WHERE {column} LIKE '%{title}%'"
         result = self.cur.execute(query)
         return result.fetchall()
 
@@ -42,5 +47,6 @@ book = Book('Oliver Twist', 'Charles Dickens')
 # book.insert_row("213-10-13-438927-1", "Learn Ruby Programming", "Mitsuyo Maida", "shelf")
 # -------- Save the data ---------
 # book.save_data()
-print(book.find_one("title", "shelf"))
+print(book.find_one("title", "shelf", "Hackers And Painters"))
 print(book.select_all("shelf"))
+print(book.find("title", "hackers", "shelf"))
