@@ -34,11 +34,13 @@ class Book:
     Database connection: {connection}"
 
 book = Book('Oliver Twist', 'Charles Dickens')
-book.create_table("shelf")
-book.insert_row("978-0-13-652023-8", "The Alchemist", "Paulo Coelho", "shelf")
-book.insert_row("978-1-13-652024-9", "Oliver Twist", "Charles Dickens", "shelf")
-book.insert_row("918-12-9-472032-9", "Hackers And Painters", "Paul Graham", "shelf")
-book.insert_row("213-10-13-438927-1", "Learn Ruby Programming", "Mitsuyo Maida", "shelf")
-book.save_data()
-# print(book.find_one("title", "shelf"))
-# print(book.select_all("shelf"))
+# book.create_table("shelf")
+# ------- New Rows ---------
+# book.insert_row("978-0-13-652023-8", "The Alchemist", "Paulo Coelho", "shelf")
+# book.insert_row("978-1-13-652024-9", "Oliver Twist", "Charles Dickens", "shelf")
+# book.insert_row("918-12-9-472032-9", "Hackers And Painters", "Paul Graham", "shelf")
+# book.insert_row("213-10-13-438927-1", "Learn Ruby Programming", "Mitsuyo Maida", "shelf")
+# -------- Save the data ---------
+# book.save_data()
+print(book.find_one("title", "shelf"))
+print(book.select_all("shelf"))
