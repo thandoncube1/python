@@ -36,7 +36,7 @@ class Book:
 
     def __str__(self):
         return f"{self.title} Author: ({self.author}) \
-    Database connection: {connection}"
+Database connection: {self.cur.connection}"
 
 book = Book('Oliver Twist', 'Charles Dickens')
 # book.create_table("shelf")
@@ -50,3 +50,4 @@ book = Book('Oliver Twist', 'Charles Dickens')
 print(book.find_one("title", "shelf", "Hackers And Painters"))
 print(book.select_all("shelf"))
 print(book.find("title", "hackers", "shelf"))
+print(book)
