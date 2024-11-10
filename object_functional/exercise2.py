@@ -16,7 +16,7 @@ sorted_collection = dict()
 unsorted = { 'a': '', 'f': 'F', 'c': 'c', 'b': 'B', 'd': 'DD', 'e': 'ef'}
 
 keys = list(unsorted.keys())
-
+# Bubble sort - Not as efficient but works
 for i in range(len(keys)):
     for j in range(len(keys) - 1):
         if keys[j] > keys[j + 1]:
