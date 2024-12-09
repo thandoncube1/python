@@ -5,10 +5,8 @@ def bubble_sort(array: list, n: int) -> None:
     for _ in range(0, n):
         for i in range(0, n-1):
             if array[i] > array[i+1]:
-                temp = array[i]
-                array[i] = array[i+1]
-                array[i+1] = temp
-    return array
+                array[i], array[i+1] = array[i+1], array[i]
+
 
 
 def main():
