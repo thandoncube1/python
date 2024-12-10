@@ -1,0 +1,27 @@
+A. Write a program for managing a library's borrowing system. The program should support:
+
+Book Information: Title, author, and the number of available copies.
+Member Records: Member name, contact information, and borrowed books.
+Borrowing System: Allow members to borrow and return books.
+Status Report: Display the list of borrowed books, along with the member names and due dates.
+
+Tasks to Perform:
+
+1. Add details for three books and their available copies.
+2. Register two library members.
+3. Process the borrowing of books and update availability.
+4. Display the borrowing status and remaining available books.
+
+B. Develop a program to manage a school timetable. The program should allow for the following:
+
+Teacher Details: Store information like name, subject specialization, and availability.
+Student Information: Keep track of student names, grades, and enrolled subjects.
+Timetable Creation: Assign teachers to specific time slots and subjects, ensuring no conflicts in availability.
+Display Timetable: Generate a timetable showing subjects, teacher names, and allocated time slots.
+
+Tasks to Perform:
+
+1. Create entries for at least two teachers and their availability.
+2. Add details for three students and their enrolled subjects.
+3. Assign teachers to subjects and display the timetable.
+4. Show a list of students enrolled in each subject.
