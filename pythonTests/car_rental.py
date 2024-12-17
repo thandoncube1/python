@@ -33,7 +33,7 @@ class Member(Person):
         super().__init__(name, role)
         self.memberId = f"{choice(["WE", "TS", "ZR","AK"])}{randint(100, 999)}{choice(["FGW", "L3K", "I0D", "78G"])}"
         self.email = email
-        self.car_borrowed = [] # Will show the car make
+        self.car_borrowed = {} # Will show the car make
         self.return_by = {} # Will show the date for { make: return_date }
         self.rental_cost = {} # Will show the cost incurred cost_per_day * numbers_of_days
         self.history = {} # List of all rentals in the year ()
@@ -46,7 +46,7 @@ class Member(Person):
             return f"Member: {self.id} has not collected points yet."
 
     def __str__(self):
-        return f"Name: {self.name}\nRole: {self.role}\nCar borrowed: {self.car_borrowed[self.id]}\nPoints Earned: {self.points_collected}"
+        return '{\n' + f"Name: {self.name}\nRole: {self.role}\nCar borrowed: {self.car_borrowed[self.memberId]}\nPoints Earned: {self.points_collected}" + "\n}"
 
 
 class Guest(Person):
@@ -70,7 +70,8 @@ class CarRentalCompany(object):
         new_member = Member(name, email, role)
         if new_member.memberId not in self.members:
             self.members[new_member.memberId] = new_member
-        return f"{new_member.memberId} already a member!"
+        print(f"{new_member.memberId} already a member!")
+        return new_member.memberId
 
     def get_car(self, car_make):
         return self.cars[car_make]
@@ -95,8 +96,8 @@ class CarRentalCompany(object):
             return "Sorry! Car is currently booked.\nLook at other options."
 
         car.available_to_rent -= 1
-        member.car_borrowed.append(car_make)
-        due_date = datetime.now + timedelta(days=days)
+        member.car_borrowed[memberId] = car_make
+        due_date = datetime.now() + timedelta(days=days)
         member.return_by[car_make] = due_date
         member.rental_cost[car_make] = f"${(car.cost_per_day * days * 1.02)}"
         car.car_borrowed_by[memberId] = due_date
@@ -114,8 +115,8 @@ class CarRentalCompany(object):
         for car in self.cars:
             print(car)
         print(f"Registered Members: {len(self.members.items())}")
-        for member in self.members:
-            print(member)
+        for member, value in self.members.items():
+            print(member, value)
 
 
 
@@ -123,11 +124,13 @@ if __name__ == "__main__":
     guest_user = Guest("William", "william@myaccount.com", "Guest")
     # Add cars and members to the Rental Spot
     enterprise_rental = CarRentalCompany()
-    enterprise_rental.add_member("James", "james@gmail.com", "Member")
-    enterprise_rental.add_member("Fred", "fred.12@yahoo.com", "Member")
+    memberId = enterprise_rental.add_member("James", "james@gmail.com", "Member")
+    member2Id = enterprise_rental.add_member("Fred", "fred.12@yahoo.com", "Member")
     enterprise_rental.add_car("Honda", "Civic", 2024, 10)
     enterprise_rental.add_car("Mercedes", "Benz AMG", 2020, 4)
     enterprise_rental.add_car("Toyota", "Supra", 2021, 6)
     enterprise_rental.add_car("Genesis", "GS40 RS", 2022)
     # Create a rental
+    enterprise_rental.rent_car(memberId, "Honda", 3)
+    enterprise_rental.rent_car(member2Id, "Toyota", 5)
     enterprise_rental.display_status()
