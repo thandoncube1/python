@@ -39,14 +39,8 @@ class Member(Person):
         self.history = {} # List of all rentals in the year ()
         self.points_collected = 0 # Calculated by (number_of_rentals * 0.05 * 100)/12
 
-    def calculate_points(self, current_year: int):
-        if len(self.history[current_year]) > 0:
-            self.points_collected = (len(self.history[current_year]) * 0.05 * 100)/12
-        else:
-            return f"Member: {self.id} has not collected points yet."
-
     def __str__(self):
-        return '{\n' + f"Name: {self.name}\nRole: {self.role}\nCar borrowed: {self.car_borrowed[self.memberId]}\nPoints Earned: {self.points_collected}" + "\n}"
+        return '{\n' + f"  Name: {self.name}\n  Role: {self.role}\n  Car_borrowed: {self.car_borrowed[self.memberId]}\n  Points Earned: {self.points_collected:.1f}" + "\n}"
 
 
 class Guest(Person):
@@ -59,6 +53,7 @@ class CarRentalCompany(object):
     def __init__(self):
         self.cars = {}
         self.members = {}
+        self.memberPoints = {}
         self.minimum_days = 1 # 1 Day is around 24 hours calculated later using datetime
         self.current_rentals = []
 
@@ -81,6 +76,13 @@ class CarRentalCompany(object):
 
     def add_guest_to_members(self, other):
         self.add_member(other.name, other.email, "Member")
+
+    def calculate_points(self, memberId, days: int):
+        if memberId in self.members:
+            self.memberPoints[memberId] = (self.minimum_days * days) * 0.05 * 30
+            return self.memberPoints[memberId]
+        else:
+            return f"Member: {self.memberId} has not collected points yet."
 
     def rent_car(self, memberId, car_make, days):
         if memberId not in self.members:
@@ -106,6 +108,7 @@ class CarRentalCompany(object):
             member.history[date.year] = []
         else:
             member.history[date.year].append(car_make)
+        member.points_collected = self.calculate_points(memberId, days)
 
     def display_status(self):
         print("="*20)
