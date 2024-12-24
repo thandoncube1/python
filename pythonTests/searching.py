@@ -21,7 +21,45 @@ def selection_sort(L):
 
 
 
+# Merge sort - 1. Merge
+def merge(left: list, right: list):
+    result = []
+    i, j = 0, 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    while i < len(left):
+        result.append(left[i])
+        i += 1
+    while j < len(right):
+        result.append(right[j])
+        j += 1
+    print('Merge: ' + str(left) + ' & ' + str(right))
+    return result
+
+"""
+    Divide the list successively into halves
+    Depth first such that conquer smallest pieces down one branch
+    first before moving to larger pieces.
+"""
+def merge_sort(L: list):
+    print('Merge Sort: ' + str(L))
+    if len(L) < 2:
+        return L[:]
+    else:
+        middle = len(L) // 2
+        left = merge_sort(L[:middle])
+        right = merge_sort(L[middle:])
+        return merge(left, right)
+
+
 arrayList = [3,6,8,9,3,1,4,5,12,7,2]
 # bubble_sort(arrayList)
-selection_sort(arrayList)
-print(arrayList)
+# selection_sort(arrayList)
+result = merge_sort(arrayList)
+# print(arrayList)
+print(result)
