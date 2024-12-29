@@ -15,10 +15,13 @@ print(*values, sep=" -- ")
 
 # use the 'end' argument to control the line ending characters
 # let's auto-print the current line number along with each item
-
+for i in range(0, len(values)):
+    print(values[i], end=f" [line: {str(i+1)}]\n")
 
 # you can even redirect print() output to a file:
-
+newfile = open("output.txt", "w")
+print(*values, sep=" -- ", file=newfile, flush=True)
+"""Reason why we use the flush flag is to clear the buffer"""
 
 # pprint() can be used to print more complex data
 # in a format that is more readable
