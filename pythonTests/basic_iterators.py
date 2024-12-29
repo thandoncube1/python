@@ -19,3 +19,6 @@ print(next(i))
 """You have control over what is iterated over and values you need."""
 
 # iterate using a function and a sentinel
+with open("testfile.txt", "r") as fp:
+    for line in iter(fp.readline, ''):
+        print(line)
