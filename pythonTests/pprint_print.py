@@ -19,9 +19,9 @@ for i in range(0, len(values)):
     print(values[i], end=f" [line: {str(i+1)}]\n")
 
 # you can even redirect print() output to a file:
-newfile = open("output.txt", "w")
-print(*values, sep=" -- ", file=newfile, flush=True)
-"""Reason why we use the flush flag is to clear the buffer"""
+# newfile = open("output.txt", "w")
+# print(*values, sep=" -- ", file=newfile, flush=True)
+# """Reason why we use the flush flag is to clear the buffer"""
 
 # pprint() can be used to print more complex data
 # in a format that is more readable
@@ -31,8 +31,9 @@ worldcupdata = [
     { "game": "Semifinal", "Attendance" : 68294, "France" : 2, "Morocco" : 0},
     { "game": "Semifinal", "Attendance" : 88966, "Argentina" : 3, "Croatia" : 0}
 ]
-
-
+print()
+pprint.pp(worldcupdata, indent=3, width=40, underscore_numbers=True)
+print()
 # pprint also works on newer complex structures, like dataclasses!
 @dataclass
 class wcdata:
@@ -48,3 +49,5 @@ worldcupdata2 = [
     wcdata("Semifinal", 68294, "France" , "Morocco" , "2 -- 0" ),
     wcdata("Semifinal", 88966, "Argentina" , "Croatia" , "3 -- 0" ),
 ]
+
+pprint.pp(worldcupdata2)
