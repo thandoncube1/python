@@ -18,7 +18,20 @@ input {
     font-size: 16px;
 }
 
+figure {
+    padding: 20px;
+}
+figure > figcaption {
+    display: none;
+}
+
+figure:hover > figcaption {
+    display: block;
+    color: #dddddd;
+}
+
 table {
+    align-content: center;
     border-collapse: collapse;
     width: 100%;
 }
