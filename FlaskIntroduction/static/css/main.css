@@ -1,0 +1,61 @@
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.content {
+    margin: 0 auto;
+    width: 400px;
+}
+
+table, td, th {
+    border: 1px solid #aaa;
+}
+
+input {
+    border: 1px solid #000000;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+th {
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+#content {
+    width: 68%;
+    border: 1px solid #eeeeee;
+    box-shadow: 2px 3px 8px #dddddd;
+    font-size: 16pt;
+    border-radius: 12px;
+    height: 40px;
+    padding: 0 10px;
+}
+
+input[type="submit"] {
+    border-radius: 12px;
+    width: 100px;
+    height: 40px;
+    background-color: rgb(14 165 233);
+    color: aliceblue;
+    border: none;
+    box-shadow: 2px 3px 8px #dddddd;
+}
+::placeholder {
+    color: #aaaaaa;
+}
